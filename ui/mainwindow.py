@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainwindow.ui'
+# Form implementation generated from reading ui file 'ui/mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -24,10 +24,10 @@ class Ui_MainWindow(object):
         self.title.setFont(font)
         self.title.setObjectName("title")
         self.openFolderBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.openFolderBtn.setGeometry(QtCore.QRect(10, 90, 261, 26))
+        self.openFolderBtn.setGeometry(QtCore.QRect(10, 90, 261, 51))
         self.openFolderBtn.setObjectName("openFolderBtn")
         self.beginTrainingBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.beginTrainingBtn.setGeometry(QtCore.QRect(10, 140, 261, 26))
+        self.beginTrainingBtn.setGeometry(QtCore.QRect(10, 160, 261, 51))
         self.beginTrainingBtn.setObjectName("beginTrainingBtn")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
