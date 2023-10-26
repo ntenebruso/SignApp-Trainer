@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="title">
+   <widget class="QLabel" name="titleLabel">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -56,6 +56,25 @@
     </property>
     <property name="text">
      <string>Begin Training!</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="trainingInfoLabel">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>160</y>
+      <width>91</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>(check the terminal for output)</string>
+    </property>
+    <property name="wordWrap">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
