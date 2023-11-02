@@ -19,13 +19,15 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>311</width>
+      <width>301</width>
       <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>36</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -75,6 +77,19 @@
     </property>
     <property name="wordWrap">
      <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="plotDataBtn">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>261</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Plot Data</string>
     </property>
    </widget>
   </widget>
