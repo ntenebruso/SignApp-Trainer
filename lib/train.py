@@ -6,7 +6,7 @@ from mediapipe_model_maker import gesture_recognizer
 
 dataset_path = "rps_data_sample"
 
-def train():
+if __name__ == "__main__":
   data = gesture_recognizer.Dataset.from_folder(
     dirname=dataset_path,
     hparams=gesture_recognizer.HandDataPreprocessingParams()
