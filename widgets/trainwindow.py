@@ -12,7 +12,8 @@ class TrainWindow(QWidget):
     self.ui.setupUi(self)
     
     self.process = QProcess()
-    self.process.readyRead.connect(self.data_ready)
+    self.process.setProcessChannelMode(QProcess.MergedChannels)
+    self.process.readyReadStandardOutput.connect(self.data_ready)
     self.process.started.connect(lambda: self.ui.trainBtn.setEnabled(False))
     self.process.finished.connect(lambda: self.ui.trainBtn.setEnabled(True))
 
@@ -25,5 +26,5 @@ class TrainWindow(QWidget):
   def data_ready(self):
     cursor = self.ui.trainOutput.textCursor()
     cursor.movePosition(cursor.End)
-    cursor.insertText(str(self.process.readAll().data(), encoding="utf-8"))
+    cursor.insertText(str(self.process.readAllStandardOutput().data(), encoding="utf-8"))
     self.ui.trainOutput.ensureCursorVisible()
