@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Graph Training Data</string>
   </property>
   <layout class="QGridLayout" name="gridLayout" columnstretch="0,0">
    <item row="0" column="1">
@@ -54,7 +54,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="fileInputLabel">
         <property name="text">
          <string>Picture to graph</string>
         </property>
@@ -62,6 +62,20 @@
       </item>
       <item>
        <widget class="QComboBox" name="fileInput"/>
+      </item>
+      <item>
+       <widget class="QLabel" name="numInputLabel">
+        <property name="text">
+         <string>Number of pictures to graph</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="numInput">
+        <property name="minimum">
+         <number>1</number>
+        </property>
+       </widget>
       </item>
       <item>
        <spacer name="verticalSpacer">

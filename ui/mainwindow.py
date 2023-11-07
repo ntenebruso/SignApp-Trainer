@@ -49,7 +49,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "SignApp Trainer"))
         self.titleLabel.setText(_translate("MainWindow", "SignApp Trainer"))
         self.openFolderBtn.setText(_translate("MainWindow", "Open Training Folder"))
         self.beginTrainingBtn.setText(_translate("MainWindow", "Begin Training!"))

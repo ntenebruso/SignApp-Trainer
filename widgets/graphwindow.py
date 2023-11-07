@@ -10,6 +10,7 @@ from matplotlib.figure import Figure
 from matplotlib.image import imread
 
 import os
+import math
 
 DATASET_PATH = os.path.join(os.getcwd(), "rps_data_sample")
 
@@ -38,13 +39,24 @@ class GraphWindow(QWidget):
     self.figure.clear()
     
     current_option = self.ui.fileInput.currentText()
+    num_images = self.ui.numInput.value()
+
+    num_cols = 5
+    num_rows = math.ceil(num_images / num_cols)
+    
     label_dir = os.path.join(DATASET_PATH, current_option)
-    example_filenames = os.listdir(label_dir)[:5]
-    axs = self.figure.subplots(1, 5)
-    for i in range(5):
-      axs[i].imshow(imread(os.path.join(label_dir, example_filenames[i])))
-      axs[i].get_xaxis().set_visible(False)
-      axs[i].get_yaxis().set_visible(False)
-    self.figure.suptitle(f'Showing 5 for {current_option}')
+    example_filenames = os.listdir(label_dir)[:num_images]
+    axs = self.figure.subplots(num_rows, num_cols, squeeze=False)
+
+    count = 0
+    for i in range(num_rows):
+      for j in range(num_cols):
+        if count <= num_images - 1:
+          axs[i][j].imshow(imread(os.path.join(label_dir, example_filenames[i + j])))
+        axs[i][j].get_xaxis().set_visible(False)
+        axs[i][j].get_yaxis().set_visible(False)
+        count += 1
+
+    self.figure.suptitle(f'Showing {num_images} for {current_option}')
 
     self.canvas.draw()
