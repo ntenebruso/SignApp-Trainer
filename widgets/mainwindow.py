@@ -5,6 +5,7 @@ from PyQt5.QtCore import QUrl
 from ui.mainwindow import Ui_MainWindow
 
 from widgets.trainwindow import TrainWindow
+from widgets.graphwindow import GraphWindow
 
 from lib.plot import plot
 
@@ -18,6 +19,7 @@ class MainWindow(QMainWindow):
     self.ui.setupUi(self)
 
     self.train_window = TrainWindow()
+    self.graph_window = GraphWindow()
 
     self.ui.openFolderBtn.clicked.connect(self.open_folder)
     self.ui.beginTrainingBtn.clicked.connect(self.open_train_window)
@@ -33,7 +35,9 @@ class MainWindow(QMainWindow):
     self.train_window.raise_()
 
   def plot_data(self):
-    plot()
+    self.graph_window.show()
+    self.graph_window.activateWindow()
+    self.graph_window.raise_()
 
   def open_folder(self):
     QDesktopServices.openUrl(QUrl.fromLocalFile(os.path.join(os.getcwd(), "rps_data_sample")))
