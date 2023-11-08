@@ -2,11 +2,13 @@ import os
 import tensorflow as tf
 assert tf.__version__.startswith('2')
 
+from lib.util import bundle_dir
 from mediapipe_model_maker import gesture_recognizer
 
-dataset_path = "rps_data_sample"
 
-if __name__ == "__main__":
+def main():
+  dataset_path = os.path.join(bundle_dir, "rps_data_sample")
+  
   data = gesture_recognizer.Dataset.from_folder(
     dirname=dataset_path,
     hparams=gesture_recognizer.HandDataPreprocessingParams()

@@ -1,30 +1,60 @@
 from PyQt5.QtWidgets import QWidget
-from PyQt5.QtCore import QProcess
+from PyQt5.QtCore import QProcess, QObject, pyqtSignal
 from ui.trainwindow import Ui_TrainWindow
 
-import sys
-import os
+import os, sys
+from threading import Thread
+from contextlib import redirect_stdout, redirect_stderr
+
+class WriteProcessor(QObject):
+  data_ready = pyqtSignal(str, name="dataReady")
+
+  def __init__(self):
+    super(WriteProcessor, self).__init__()
+    self.buf = ""
+
+  def write(self, buf):
+    while buf:
+      try:
+        newline_index = self.buf.index("\n")
+      except ValueError:
+        self.buf += buf
+        break
+
+      data = self.buf + buf[:newline_index + 1]
+      self.buf = ""
+      buf = buf[newline_index + 1:]
+      self.data_ready.emit(data)
+  
+  def flush(self):
+    pass
+      
 
 class TrainWindow(QWidget):
   def __init__(self):
     super().__init__()
     self.ui = Ui_TrainWindow()
     self.ui.setupUi(self)
-    
-    self.process = QProcess()
-    self.process.setProcessChannelMode(QProcess.MergedChannels)
-    self.process.readyReadStandardOutput.connect(self.data_ready)
-    self.process.started.connect(lambda: self.ui.trainBtn.setEnabled(False))
-    self.process.finished.connect(lambda: self.ui.trainBtn.setEnabled(True))
 
     self.ui.closeBtn.clicked.connect(self.close)
-    self.ui.trainBtn.clicked.connect(self.start_program)
+    self.ui.trainBtn.clicked.connect(self.run_thread)
 
-  def start_program(self):
-    self.process.start(sys.executable, [os.path.join("lib", "train.py")])
+    self.write_processor = WriteProcessor()
+    self.write_processor.data_ready.connect(self.data_ready)
 
-  def data_ready(self):
+  def run_thread(self):
+      t = Thread(target=self.run_train)
+      t.start()
+      self.ui.trainBtn.setEnabled(False)
+
+  def run_train(self):
+    from lib.train import main as train
+    with redirect_stdout(self.write_processor), redirect_stderr(self.write_processor):
+      train()
+      self.ui.trainBtn.setEnabled(True)
+
+  def data_ready(self, data):
     cursor = self.ui.trainOutput.textCursor()
     cursor.movePosition(cursor.End)
-    cursor.insertText(str(self.process.readAllStandardOutput().data(), encoding="utf-8"))
+    cursor.insertText(data)
     self.ui.trainOutput.ensureCursorVisible()

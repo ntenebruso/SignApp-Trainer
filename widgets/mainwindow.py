@@ -2,12 +2,12 @@ from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QDesktopServices
 from PyQt5.QtCore import QUrl
 
-from ui.mainwindow import Ui_MainWindow
+from lib.plot import plot
+from lib.util import bundle_dir
 
+from ui.mainwindow import Ui_MainWindow
 from widgets.trainwindow import TrainWindow
 from widgets.graphwindow import GraphWindow
-
-from lib.plot import plot
 
 import os
 
@@ -40,5 +40,5 @@ class MainWindow(QMainWindow):
     self.graph_window.raise_()
 
   def open_folder(self):
-    QDesktopServices.openUrl(QUrl.fromLocalFile(os.path.join(os.getcwd(), "rps_data_sample")))
+    QDesktopServices.openUrl(QUrl.fromLocalFile(os.path.join(bundle_dir, "rps_data_sample")))
 

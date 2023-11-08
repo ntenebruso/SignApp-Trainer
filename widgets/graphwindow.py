@@ -3,16 +3,16 @@ from PyQt5.QtGui import QDesktopServices
 from PyQt5.QtCore import QUrl
 
 from ui.graphwindow import Ui_GraphWindow
+from lib.util import bundle_dir
 
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qtagg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 from matplotlib.image import imread
 
-import os
-import math
+import os, math
 
-DATASET_PATH = os.path.join(os.getcwd(), "rps_data_sample")
+DATASET_PATH = os.path.join(bundle_dir, "rps_data_sample")
 
 class GraphWindow(QWidget):
   def __init__(self):
