@@ -1,5 +1,6 @@
 # Specific to this project
 exported_model/
+.DS_Store
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
