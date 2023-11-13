@@ -1,62 +1,61 @@
-from PyQt5.QtWidgets import QApplication, QWidget
-from PyQt5.QtGui import QDesktopServices
-from PyQt5.QtCore import QUrl
+import math
+import os
 
-from ui.graphwindow import Ui_GraphWindow
-from lib.util import bundle_dir
-
+from PyQt5.QtWidgets import QWidget
 from matplotlib.backends.backend_qtagg import FigureCanvasQTAgg as FigureCanvas
 from matplotlib.backends.backend_qtagg import NavigationToolbar2QT as NavigationToolbar
 from matplotlib.figure import Figure
 from matplotlib.image import imread
 
-import os, math
+from lib.util import bundle_dir
+from ui.graphwindow import Ui_GraphWindow
 
 DATASET_PATH = os.path.join(bundle_dir, "rps_data_sample")
 
+
 class GraphWindow(QWidget):
-  def __init__(self):
-    super(GraphWindow, self).__init__()
+    def __init__(self):
+        super(GraphWindow, self).__init__()
 
-    self.ui = Ui_GraphWindow()
-    self.ui.setupUi(self)
+        self.ui = Ui_GraphWindow()
+        self.ui.setupUi(self)
 
-    self.get_folders()
+        self.get_folders()
 
-    self.figure = Figure()
-    self.canvas = FigureCanvas(self.figure)
-    self.toolbar = NavigationToolbar(self.canvas)
-    self.ui.graphContainer.addWidget(self.toolbar)
-    self.ui.graphContainer.addWidget(self.canvas)
-    self.ui.plotBtn.clicked.connect(self.plot)
+        self.figure = Figure()
+        self.canvas = FigureCanvas(self.figure)
+        self.toolbar = NavigationToolbar(self.canvas)
+        self.ui.graphContainer.addWidget(self.toolbar)
+        self.ui.graphContainer.addWidget(self.canvas)
+        self.ui.plotBtn.clicked.connect(self.plot)
 
-  def get_folders(self):
-    for path in os.listdir(DATASET_PATH):
-      if os.path.isdir(os.path.join(DATASET_PATH, path)):
-        self.ui.fileInput.addItem(path)
+    def get_folders(self):
+        for path in os.listdir(DATASET_PATH):
+            if os.path.isdir(os.path.join(DATASET_PATH, path)):
+                self.ui.fileInput.addItem(path)
 
-  def plot(self):
-    self.figure.clear()
-    
-    current_option = self.ui.fileInput.currentText()
-    num_images = self.ui.numInput.value()
+    def plot(self):
+        self.figure.clear()
 
-    num_cols = 5
-    num_rows = math.ceil(num_images / num_cols)
-    
-    label_dir = os.path.join(DATASET_PATH, current_option)
-    example_filenames = os.listdir(label_dir)[:num_images]
-    axs = self.figure.subplots(num_rows, num_cols, squeeze=False)
+        current_option = self.ui.fileInput.currentText()
+        num_images = self.ui.numInput.value()
 
-    count = 0
-    for i in range(num_rows):
-      for j in range(num_cols):
-        if count <= num_images - 1:
-          axs[i][j].imshow(imread(os.path.join(label_dir, example_filenames[i + j])))
-        axs[i][j].get_xaxis().set_visible(False)
-        axs[i][j].get_yaxis().set_visible(False)
-        count += 1
+        num_cols = 5
+        num_rows = math.ceil(num_images / num_cols)
 
-    self.figure.suptitle(f'Showing {num_images} for {current_option}')
+        label_dir = os.path.join(DATASET_PATH, current_option)
+        example_filenames = os.listdir(label_dir)[:num_images]
+        axs = self.figure.subplots(num_rows, num_cols, squeeze=False)
 
-    self.canvas.draw()
+        count = 0
+        for i in range(num_rows):
+            for j in range(num_cols):
+                if count <= num_images - 1:
+                    axs[i][j].imshow(imread(os.path.join(label_dir, example_filenames[i + j])))
+                axs[i][j].get_xaxis().set_visible(False)
+                axs[i][j].get_yaxis().set_visible(False)
+                count += 1
+
+        self.figure.suptitle(f'Showing {num_images} for {current_option}')
+
+        self.canvas.draw()

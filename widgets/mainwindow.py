@@ -1,44 +1,42 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtGui import QDesktopServices
-from PyQt5.QtCore import QUrl
-
-from lib.plot import plot
-from lib.util import bundle_dir
-
-from ui.mainwindow import Ui_MainWindow
-from widgets.trainwindow import TrainWindow
-from widgets.graphwindow import GraphWindow
-
 import os
 
+from PyQt5.QtCore import QUrl
+from PyQt5.QtGui import QDesktopServices
+from PyQt5.QtWidgets import QApplication, QMainWindow
+
+from lib.util import bundle_dir
+from ui.mainwindow import Ui_MainWindow
+from widgets.graphwindow import GraphWindow
+from widgets.trainwindow import TrainWindow
+
+
 class MainWindow(QMainWindow):
-  def __init__(self):
-    super(MainWindow, self).__init__()
-    
-    self.ui = Ui_MainWindow()
-    self.ui.setupUi(self)
+    def __init__(self):
+        super(MainWindow, self).__init__()
 
-    self.train_window = TrainWindow()
-    self.graph_window = GraphWindow()
+        self.ui = Ui_MainWindow()
+        self.ui.setupUi(self)
 
-    self.ui.openFolderBtn.clicked.connect(self.open_folder)
-    self.ui.beginTrainingBtn.clicked.connect(self.open_train_window)
+        self.train_window = TrainWindow()
+        self.graph_window = GraphWindow()
 
-    self.ui.plotDataBtn.clicked.connect(self.plot_data)
+        self.ui.openFolderBtn.clicked.connect(self.open_folder)
+        self.ui.beginTrainingBtn.clicked.connect(self.open_train_window)
 
-  def closeEvent(self, event):
-    QApplication.closeAllWindows()
+        self.ui.plotDataBtn.clicked.connect(self.plot_data)
 
-  def open_train_window(self):
-    self.train_window.show()
-    self.train_window.activateWindow()
-    self.train_window.raise_()
+    def closeEvent(self, event):
+        QApplication.closeAllWindows()
 
-  def plot_data(self):
-    self.graph_window.show()
-    self.graph_window.activateWindow()
-    self.graph_window.raise_()
+    def open_train_window(self):
+        self.train_window.show()
+        self.train_window.activateWindow()
+        self.train_window.raise_()
 
-  def open_folder(self):
-    QDesktopServices.openUrl(QUrl.fromLocalFile(os.path.join(bundle_dir, "rps_data_sample")))
+    def plot_data(self):
+        self.graph_window.show()
+        self.graph_window.activateWindow()
+        self.graph_window.raise_()
 
+    def open_folder(self):
+        QDesktopServices.openUrl(QUrl.fromLocalFile(os.path.join(bundle_dir, "rps_data_sample")))
