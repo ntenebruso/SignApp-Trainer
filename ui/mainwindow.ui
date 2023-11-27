@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>641</width>
-    <height>407</height>
+    <height>448</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -25,8 +25,8 @@
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>301</width>
-      <height>41</height>
+      <width>461</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -70,13 +70,26 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>230</y>
+      <y>300</y>
       <width>261</width>
       <height>51</height>
      </rect>
     </property>
     <property name="text">
      <string>Plot Data</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="openCameraBtn">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>261</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Capture Data</string>
     </property>
    </widget>
   </widget>

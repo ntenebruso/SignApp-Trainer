@@ -7,10 +7,10 @@ from matplotlib.backends.backend_qtagg import NavigationToolbar2QT as Navigation
 from matplotlib.figure import Figure
 from matplotlib.image import imread
 
-from lib.util import bundle_dir
+from lib.util import bundle_dir, train_config
 from ui.graphwindow import Ui_GraphWindow
 
-DATASET_PATH = os.path.join(bundle_dir, "rps_data_sample")
+DATASET_PATH = os.path.join(bundle_dir, train_config.get("data_dir"))
 
 
 class GraphWindow(QWidget):

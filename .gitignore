@@ -1,5 +1,5 @@
 # Specific to this project
-exported_model/
+data/exported_model/
 .DS_Store
 
 # Byte-compiled / optimized / DLL files

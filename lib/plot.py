@@ -3,15 +3,17 @@ import os
 import matplotlib
 import matplotlib.pyplot as plt
 
+from lib.util import bundle_dir, train_config
+
 matplotlib.use('QtAgg')
 
 NUM_EXAMPLES = 5
 
 
 def plot():
-    dataset_path = os.path.join(os.getcwd(), "rps_data_sample")
-
+    dataset_path = os.path.join(bundle_dir, train_config.get("data_dir"))
     print(dataset_path)
+
     labels = []
     for i in os.listdir(dataset_path):
         if os.path.isdir(os.path.join(dataset_path, i)):

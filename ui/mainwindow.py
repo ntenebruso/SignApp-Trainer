@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'ui/mainwindow.ui'
+# Form implementation generated from reading ui file 'mainwindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -14,12 +14,12 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(641, 407)
+        MainWindow.resize(641, 448)
         MainWindow.setMinimumSize(QtCore.QSize(295, 330))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.titleLabel = QtWidgets.QLabel(self.centralwidget)
-        self.titleLabel.setGeometry(QtCore.QRect(10, 10, 301, 41))
+        self.titleLabel.setGeometry(QtCore.QRect(10, 10, 461, 61))
         font = QtGui.QFont()
         font.setPointSize(36)
         font.setBold(True)
@@ -33,8 +33,11 @@ class Ui_MainWindow(object):
         self.beginTrainingBtn.setGeometry(QtCore.QRect(10, 160, 261, 51))
         self.beginTrainingBtn.setObjectName("beginTrainingBtn")
         self.plotDataBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.plotDataBtn.setGeometry(QtCore.QRect(10, 230, 261, 51))
+        self.plotDataBtn.setGeometry(QtCore.QRect(10, 300, 261, 51))
         self.plotDataBtn.setObjectName("plotDataBtn")
+        self.openCameraBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.openCameraBtn.setGeometry(QtCore.QRect(10, 230, 261, 51))
+        self.openCameraBtn.setObjectName("openCameraBtn")
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 641, 21))
@@ -54,3 +57,4 @@ class Ui_MainWindow(object):
         self.openFolderBtn.setText(_translate("MainWindow", "Open Training Folder"))
         self.beginTrainingBtn.setText(_translate("MainWindow", "Begin Training!"))
         self.plotDataBtn.setText(_translate("MainWindow", "Plot Data"))
+        self.openCameraBtn.setText(_translate("MainWindow", "Capture Data"))

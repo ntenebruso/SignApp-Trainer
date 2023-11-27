@@ -49,8 +49,8 @@ class TrainWindow(QWidget):
         self.ui.trainBtn.setEnabled(False)
 
     def run_train(self):
-        from lib.train import main as train
-        with redirect_stdout(self.write_processor), redirect_stderr(self.write_processor):
+        from lib.train import train
+        with redirect_stdout(self.write_processor):
             train()
             self.ui.trainBtn.setEnabled(True)
 
