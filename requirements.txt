@@ -65,7 +65,7 @@ pyasn1==0.5.0
 pyasn1-modules==0.3.0
 pycocotools==2.0.7
 pycparser==2.21
-pyinstaller==6.1.0
+pyinstaller==6.2.0
 pyinstaller-hooks-contrib==2023.10
 pyparsing==3.1.1
 PyQt5==5.15.9
