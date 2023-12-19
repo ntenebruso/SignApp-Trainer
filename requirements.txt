@@ -39,6 +39,7 @@ charset-normalizer==3.3.2
 click==8.1.7
     # via
     #   pip-tools
+    #   qt5-tools
     #   tensorflow-datasets
 colorama==0.4.6
     # via sacrebleu
@@ -230,6 +231,8 @@ pyqt5-qt5==5.15.11
     # via pyqt5
 pyqt5-sip==12.13.0
     # via pyqt5
+pyqt5-stubs==5.15.6.0
+    # via -r requirements.in
 python-dateutil==2.8.2
     # via
     #   kaggle
@@ -241,6 +244,10 @@ pytz==2023.3.post1
     # via pandas
 pyyaml==6.0.1
     # via tf-models-official
+qt5-applications==5.15.2.2.3
+    # via qt5-tools
+qt5-tools==5.15.2.1.3
+    # via -r requirements.in
 regex==2023.10.3
     # via sacrebleu
 requests==2.31.0

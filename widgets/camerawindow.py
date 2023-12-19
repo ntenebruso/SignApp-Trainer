@@ -1,8 +1,12 @@
-from PyQt5.QtWidgets import QWidget
-from PyQt5.QtMultimedia import QCameraInfo, QCamera
-from PyQt5.QtCore import Qt
+import os
 
+from PyQt5.QtMultimedia import QCameraInfo, QCamera, QCameraImageCapture
+from PyQt5.QtWidgets import QWidget
+
+from lib.util import bundle_dir, train_config
 from ui.camerawindow import Ui_CameraWindow
+
+data_dir = os.path.join(bundle_dir, train_config.get("data_dir"))
 
 
 class CameraWindow(QWidget):
@@ -18,7 +22,11 @@ class CameraWindow(QWidget):
         self.get_available_cameras()
         self.select_camera(0)
 
-        self.ui.cameraInput.currentIndexChanged.connect(lambda index: self.select_camera(index))
+        self.capture = QCameraImageCapture(self.camera)
+        self.capture.setCaptureDestination(QCameraImageCapture.CaptureToFile)
+
+        self.ui.cameraInput.currentIndexChanged.connect(self.select_camera)
+        self.ui.captureBtn.clicked.connect(self.capture_image)
 
     def get_available_cameras(self):
         self.available_cameras = QCameraInfo.availableCameras()
@@ -29,6 +37,13 @@ class CameraWindow(QWidget):
         self.camera = QCamera(self.available_cameras[index])
         self.camera.setViewfinder(self.ui.cameraOutput)
         self.camera.start()
+
+    def capture_image(self):
+        if self.capture.isReadyForCapture():
+            self.capture.capture(os.path.join(data_dir, self.ui.objectInput.text()))
+            self.ui.statusLabel.setText("Successfully saved image")
+        else:
+            self.ui.statusLabel.setText("Error")
 
     def showEvent(self, event):
         self.camera.start()

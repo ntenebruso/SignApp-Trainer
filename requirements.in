@@ -1,3 +1,5 @@
 pip-tools
 mediapipe-model-maker
 PyQt5
+PyQt5-Stubs
+qt5-tools
