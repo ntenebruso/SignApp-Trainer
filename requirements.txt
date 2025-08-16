@@ -24,8 +24,6 @@ attrs==23.1.0
     # via mediapipe
 bleach==6.1.0
     # via kaggle
-build==1.0.3
-    # via pip-tools
 cachetools==5.3.2
     # via google-auth
 certifi==2023.11.17
@@ -38,7 +36,6 @@ charset-normalizer==3.3.2
     # via requests
 click==8.1.7
     # via
-    #   pip-tools
     #   qt5-tools
     #   tensorflow-datasets
 colorama==0.4.6
@@ -174,7 +171,6 @@ opt-einsum==3.3.0
     # via tensorflow
 packaging==23.2
     # via
-    #   build
     #   matplotlib
     #   tensorflow
     #   tensorflow-addons
@@ -184,8 +180,6 @@ pillow==10.1.0
     # via
     #   matplotlib
     #   tf-models-official
-pip-tools==7.3.0
-    # via -r requirements.in
 portalocker==2.8.2
     # via sacrebleu
 promise==2.3
@@ -223,15 +217,11 @@ pyparsing==3.1.1
     # via
     #   httplib2
     #   matplotlib
-pyproject-hooks==1.0.0
-    # via build
-pyqt5==5.15.10
+pyqt5==5.14.2
     # via -r requirements.in
-pyqt5-qt5==5.15.11
-    # via pyqt5
 pyqt5-sip==12.13.0
     # via pyqt5
-pyqt5-stubs==5.15.6.0
+pyqt5-stubs==5.14.2.2
     # via -r requirements.in
 python-dateutil==2.8.2
     # via
@@ -336,11 +326,6 @@ threadpoolctl==3.2.0
     # via scikit-learn
 toml==0.10.2
     # via tensorflow-datasets
-tomli==2.0.1
-    # via
-    #   build
-    #   pip-tools
-    #   pyproject-hooks
 tqdm==4.66.1
     # via
     #   etils
@@ -365,9 +350,7 @@ webencodings==0.5.1
 werkzeug==3.0.1
     # via tensorboard
 wheel==0.42.0
-    # via
-    #   astunparse
-    #   pip-tools
+    # via astunparse
 wrapt==1.14.1
     # via
     #   tensorflow
@@ -376,5 +359,4 @@ zipp==3.17.0
     # via etils
 
 # The following packages are considered to be unsafe in a requirements file:
-# pip
 # setuptools

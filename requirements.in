@@ -1,5 +1,4 @@
-pip-tools
-mediapipe-model-maker
-PyQt5
-PyQt5-Stubs
-qt5-tools
+mediapipe-model-maker~=0.2.1
+PyQt5~=5.14.2
+PyQt5-Stubs~=5.14.2
+qt5-tools~=5.15.2
